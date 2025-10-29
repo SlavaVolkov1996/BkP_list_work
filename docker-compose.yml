@@ -1,10 +1,9 @@
 services:
   list-backend:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: list-backend
     container_name: list-backend
-    restart: always
+    restart: unless-stopped
     ports:
       - "8000:8000"
     volumes:
@@ -12,3 +11,24 @@ services:
     environment:
       - FOLDER=/app/data
       - PYTHONPATH=/app
+    networks:
+      - todo-network
+
+  list-frontend:
+    build:
+      context: list-frontend
+    container_name: list-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - list-backend
+    networks:
+      - todo-network
+
+networks:
+  todo-network:
+    driver: bridge
+
+volumes:
+  data:
