@@ -1,0 +1,6 @@
+[submodule "list-backend"]
+	path = list-backend
+	url = git@github.com:SlavaVolkov1996/list-backend.git
+[submodule "list-frontend"]
+	path = list-frontend
+	url = git@github.com:SlavaVolkov1996/list-frontend.git
